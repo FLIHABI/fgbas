@@ -1,0 +1,3 @@
+[submodule "dependencies/commons"]
+	path = dependencies/commons
+	url = git@github.com:FLIHABI/commons.git
