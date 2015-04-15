@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
 
 #include "mnemonics.hh"
 #include "commons/asm/bytecodes.hh"
@@ -23,14 +24,20 @@ static inline void push_short(long long value, std::vector<char>& v)
 static inline void read_long_emit(std::istringstream& iss, std::vector<char>& b)
 {
   long long value;
-  iss >> value;
+
+  if (!(iss >> value))
+    throw std::invalid_argument("Invalid operand");
+
   push_long(value, b);
 }
 
 static inline void read_short_emit(std::istringstream& iss, std::vector<char>& b)
 {
   short value;
-  iss >> value;
+
+  if (!(iss >> value))
+    throw std::invalid_argument("Invalid operand");
+
   push_short(value, b);
 }
 
@@ -203,7 +210,7 @@ void handle_mnemonic( std::string& mnemonic,
   if (get_handlers().find(mnemonic) == get_handlers().end())
   {
     std::cerr << "Unknown mnemonic '" << mnemonic << "'" << std::endl;
-    std::exit(1);
+    throw std::invalid_argument("Invalid mnemonic");
   }
 
   get_handlers().at(mnemonic)(iss, bytecode);
