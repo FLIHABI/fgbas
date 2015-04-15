@@ -1,6 +1,6 @@
 OUTBIN=fgbas
 CXX=g++
-CXXFLAGS=-Wall -Wextra -std=c++14 -g -I include -I dependencies/commons/include/
+CXXFLAGS=-Wall -Wextra -Wno-unused-parameter -std=c++14 -g -I include -I dependencies/commons/include/
 OBJS=src/assembler.o\
      src/mnemonics.o\
      src/main.o
