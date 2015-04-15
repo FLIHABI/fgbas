@@ -1,8 +1,10 @@
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <vector>
 
 #include "assembler.hh"
+#include "mnemonics.hh"
 
 std::vector<char> convert_instructions(std::ifstream& is)
 {
@@ -11,7 +13,11 @@ std::vector<char> convert_instructions(std::ifstream& is)
 
   while (std::getline(is, current_line))
   {
-    //TODO: process mnemonics
+    std::string mnemonic;
+    std::istringstream iss(current_line);
+
+    if ((iss >> mnemonic))
+      handle_mnemonic(mnemonic, iss, bytecode);
   }
 
   return bytecode;
