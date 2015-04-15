@@ -109,6 +109,59 @@ static void ret(std::istringstream& iss, std::vector<char>& b)
   b.push_back(OP_RET);
 }
 
+static void jmp(std::istringstream& iss, std::vector<char>& b)
+{
+  b.push_back(OP_JMP);
+  read_short_emit(iss, b);
+}
+
+static void je(std::istringstream& iss, std::vector<char>& b)
+{
+  b.push_back(OP_JE);
+  read_short_emit(iss, b);
+}
+
+static void jl(std::istringstream& iss, std::vector<char>& b)
+{
+  b.push_back(OP_JL);
+  read_short_emit(iss, b);
+}
+
+static void jg(std::istringstream& iss, std::vector<char>& b)
+{
+  b.push_back(OP_JG);
+  read_short_emit(iss, b);
+}
+
+static void jne(std::istringstream& iss, std::vector<char>& b)
+{
+  b.push_back(OP_JNE);
+  read_short_emit(iss, b);
+}
+
+static void jle(std::istringstream& iss, std::vector<char>& b)
+{
+  b.push_back(OP_JLE);
+  read_short_emit(iss, b);
+}
+
+static void jge(std::istringstream& iss, std::vector<char>& b)
+{
+  b.push_back(OP_JGE);
+  read_short_emit(iss, b);
+}
+
+static void obj_create(std::istringstream& iss, std::vector<char>& b)
+{
+  b.push_back(OP_CREATE);
+  read_short_emit(iss, b);
+}
+
+static void obj_delete(std::istringstream& iss, std::vector<char>& b)
+{
+  b.push_back(OP_DELETE);
+}
+
 static std::unordered_map<std::string, mnemonic_handler_type>& get_handlers()
 {
   static std::unordered_map<std::string, mnemonic_handler_type> handlers =
@@ -127,6 +180,15 @@ static std::unordered_map<std::string, mnemonic_handler_type>& get_handlers()
     {"call", call},
     {"callr", callr},
     {"ret", ret},
+    {"jmp", jmp},
+    {"je", je},
+    {"jl", jl},
+    {"jg", jg},
+    {"jne", jne},
+    {"jle", jle},
+    {"jge", jge},
+    {"create", obj_create},
+    {"delete", obj_delete},
   };
 
   return handlers;
