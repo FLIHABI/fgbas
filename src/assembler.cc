@@ -10,6 +10,7 @@ std::vector<char> convert_instructions(std::ifstream& is)
 {
   std::vector<char> bytecode;
   std::string current_line;
+  int line = 0;
 
   while (std::getline(is, current_line))
   {
@@ -17,7 +18,20 @@ std::vector<char> convert_instructions(std::ifstream& is)
     std::istringstream iss(current_line);
 
     if ((iss >> mnemonic))
-      handle_mnemonic(mnemonic, iss, bytecode);
+    {
+      try
+      {
+        handle_mnemonic(mnemonic, iss, bytecode);
+      }
+      catch(std::exception& e)
+      {
+        std::cerr << "Parse error line " << line << ": " << e.what() << std::endl;
+        is.close();
+        std::exit(1);
+      }
+    }
+
+    line++;
   }
 
   return bytecode;
