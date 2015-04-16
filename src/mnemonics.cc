@@ -194,7 +194,7 @@ static std::unordered_map<std::string, mnemonic_handler_type>& get_handlers()
     {"jle", jle},
     {"jge", jge},
     {"create", obj_create},
-    {"delete", obj_delete},
+    {"delete", obj_delete}
   };
 
   return handlers;
