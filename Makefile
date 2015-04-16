@@ -7,9 +7,9 @@ OBJS=src/assembler.o\
 
 .PHONY: all clean
 
-all: tolk
+all: fgbas
 
-tolk: $(OBJS)
+fgbas: $(OBJS)
 	$(CXX) -o $(OUTBIN) $(OBJS)
 
 clean:
