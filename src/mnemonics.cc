@@ -208,10 +208,7 @@ void handle_mnemonic( std::string& mnemonic,
   std::transform(mnemonic.begin(), mnemonic.end(), mnemonic.begin(), tolower);
 
   if (get_handlers().find(mnemonic) == get_handlers().end())
-  {
-    std::cerr << "Unknown mnemonic '" << mnemonic << "'" << std::endl;
-    throw std::invalid_argument("Invalid mnemonic");
-  }
+    throw std::invalid_argument("Invalid mnemonic '" + mnemonic + "'");
 
   get_handlers().at(mnemonic)(iss, bytecode);
 }
