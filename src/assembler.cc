@@ -10,7 +10,7 @@ std::vector<char> convert_instructions(std::ifstream& is)
 {
   std::vector<char> bytecode;
   std::string current_line;
-  int line = 0;
+  int line = 1;
 
   while (std::getline(is, current_line))
   {
