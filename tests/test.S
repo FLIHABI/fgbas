@@ -1,8 +1,8 @@
 halt
 pop
 push 42
-pushr  0
-popr  1
+pushr 0
+popr 1
 add
 sub
 mul
@@ -15,13 +15,13 @@ not
 shr 3
 shl 5
 cmp
-call   2
-callr  0
+call 2
+callr 0
 ret
-jmp  -4
-je  65
-jl  3445
-jg  -128
+jmp -4
+je 65
+jl 3445
+jg -128
 jne -2156
 jle 32423
 jge 23323
