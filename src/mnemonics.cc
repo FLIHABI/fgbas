@@ -40,6 +40,16 @@ static inline void read_short_emit(std::istringstream& iss, std::vector<char>& b
   push_short(value, b);
 }
 
+static inline void read_byte_emit(std::istringstream& iss, std::vector<char>& b)
+{
+  unsigned char value;
+
+  if (!(iss >> value))
+    throw std::invalid_argument("Invalid operand");
+
+  b.push_back(value);
+}
+
 static void add(std::istringstream& iss, std::vector<char>& b)
 {
   b.push_back(OP_ADD);
@@ -63,6 +73,38 @@ static void div(std::istringstream& iss, std::vector<char>& b)
 static void mod(std::istringstream& iss, std::vector<char>& b)
 {
   b.push_back(OP_MOD);
+}
+
+static void bit_and(std::istringstream& iss, std::vector<char>& b)
+{
+  b.push_back(OP_AND);
+}
+
+static void bit_or(std::istringstream& iss, std::vector<char>& b)
+{
+  b.push_back(OP_OR);
+}
+
+static void bit_xor(std::istringstream& iss, std::vector<char>& b)
+{
+  b.push_back(OP_XOR);
+}
+
+static void bit_not(std::istringstream& iss, std::vector<char>& b)
+{
+  b.push_back(OP_NOT);
+}
+
+static void bit_shr(std::istringstream& iss, std::vector<char>& b)
+{
+  b.push_back(OP_SHR);
+  read_byte_emit(iss, b);
+}
+
+static void bit_shl(std::istringstream& iss, std::vector<char>& b)
+{
+  b.push_back(OP_SHL);
+  read_byte_emit(iss, b);
 }
 
 static void halt(std::istringstream& iss, std::vector<char>& b)
@@ -182,6 +224,12 @@ static std::unordered_map<std::string, mnemonic_handler_type>& get_handlers()
     {"mul", mul},
     {"div", div},
     {"mod", mod},
+    {"and", bit_and},
+    {"or", bit_or},
+    {"xor", bit_xor},
+    {"not", bit_not},
+    {"shr", bit_shr},
+    {"shl", bit_shl},
     {"cmp", cmp},
     {"call", call},
     {"callr", callr},
