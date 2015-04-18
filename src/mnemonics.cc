@@ -42,7 +42,7 @@ static inline void read_short_emit(std::istringstream& iss, std::vector<char>& b
 
 static inline void read_byte_emit(std::istringstream& iss, std::vector<char>& b)
 {
-  unsigned char value;
+  unsigned value;
 
   if (!(iss >> value))
     throw std::invalid_argument("Invalid operand");
