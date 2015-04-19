@@ -8,7 +8,7 @@ void check_args(int argc, char* bin_name)
   if (argc == 2 || argc == 3)
     return;
 
-  std::cerr << "Usage: " << bin_name << " <file> [<output>]" << std::endl;
+  std::cerr << "Usage: " << bin_name << " <input> [<output>]" << std::endl;
   std::exit(1);
 }
 
