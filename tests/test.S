@@ -1,4 +1,5 @@
 halt
+setr 0 42
 pop
 push 42
 pushr 0
