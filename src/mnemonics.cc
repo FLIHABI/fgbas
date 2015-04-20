@@ -210,6 +210,13 @@ static void obj_delete(std::istringstream& iss, std::vector<char>& b)
   b.push_back(OP_DELETE);
 }
 
+static void setr(std::istringstream& iss, std::vector<char>& b)
+{
+  b.push_back(OP_SETR);
+  read_short_emit(iss, b);
+  read_long_emit(iss, b);
+}
+
 static std::unordered_map<std::string, mnemonic_handler_type>& get_handlers()
 {
   static std::unordered_map<std::string, mnemonic_handler_type> handlers =
@@ -242,7 +249,8 @@ static std::unordered_map<std::string, mnemonic_handler_type>& get_handlers()
     {"jle", jle},
     {"jge", jge},
     {"create", obj_create},
-    {"delete", obj_delete}
+    {"delete", obj_delete},
+    {"setr", setr}
   };
 
   return handlers;
